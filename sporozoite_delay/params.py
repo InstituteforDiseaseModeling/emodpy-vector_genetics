@@ -1,2 +1,2 @@
-exp_name="Malaria Vec Gen Experiment"
-nSims = 10
+exp_name="sporozoite_delay_gene_drive"
+nSims = 1
