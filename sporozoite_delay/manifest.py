@@ -11,5 +11,5 @@ eradication_path="C:/Users/pselvaraj/Github/emodpy-vector_genetics/download/Erad
 assets_input_dir="Assets"
 plugins_folder = "download/reporter_plugins"
 
-my_ep4_assets=None
+my_ep4_assets = None
 #requirements = "./requirements.txt"

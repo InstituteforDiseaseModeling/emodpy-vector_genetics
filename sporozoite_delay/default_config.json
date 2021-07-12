@@ -621,7 +621,6 @@
         "Serialized_Population_Path": ".",
         "Serialized_Population_Reading_Type": "NONE",
         "Serialized_Population_Writing_Type": "NONE",
-        "Simulation_Dura": 1,
         "Simulation_Duration": 1,
         "Simulation_Timestep": 1,
         "Simulation_Type": "GENERIC_SIM",
@@ -3270,13 +3269,6 @@
                     "TIMESTEP"
                 ],
                 "type": "enum"
-            },
-            "Simulation_Dura": {
-                "default": 1,
-                "description": "Elapsed time noted in days from the start to the end of a simulation.",
-                "max": 1000000.0,
-                "min": 0,
-                "type": "float"
             },
             "Simulation_Duration": {
                 "default": 1,
