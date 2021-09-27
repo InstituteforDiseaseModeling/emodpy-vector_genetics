@@ -14,6 +14,28 @@ from emodpy_malaria.interventions.mosquitorelease import MosquitoRelease
 import emod_api.campaign as camp
 
 
+def find_genome_index_in_trait_modifiers(vsp, genome, trait_of_interest):
+    flat_gen = [i for j in genome for i in j]
+    flat_gen.sort()
+
+    trait_modifiers = vsp['Gene_To_Trait_Modifiers']
+
+    for i, t in enumerate(trait_modifiers):
+
+        config_gen = [m for j in t['Allele_Combinations'] for m in j]
+        config_gen.sort()
+        traits = [j['Trait'] for j in t['Trait_Modifiers']]
+        t_index = None
+        if trait_of_interest in traits:
+            t_index = traits.index(trait_of_interest)
+
+        if (t_index is not None) and (config_gen == flat_gen):
+                return i, t_index
+
+    return None
+
+
+
 def update_sim_bic(simulation, value):
     simulation.task.config.parameters.Base_Infectivity_Constant = value * 0.1
     return {"Base_Infectivity": value}
@@ -27,6 +49,58 @@ def update_sim_random_seed(simulation, value):
 def update_sim_larval_capacity(simulation, value):
     simulation.task.config.parameters.Vector_Species_Params[0].Larval_Habitat_Types[0]['Max_Larval_Capacity'] = value
     return {"Larval_Capacity": value}
+
+
+def update_infected_progress(simulation, value):
+    vsp = simulation.task.config.parameters.Vector_Species_Params[0]
+
+    genome = [["X", "X"], ["b1", "b1"]]
+    trait = "INFECTED_PROGRESS"
+    idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
+    vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = value
+
+    genome = [["X", "X"], ["b1", "b0"]]
+    trait = "INFECTED_PROGRESS"
+    idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
+    vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1-(1-value)/2
+
+    genome = [["X", "X"], ["b1", "b2"]]
+    trait = "INFECTED_PROGRESS"
+    idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
+    vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1-(1-value)/2
+
+    genome = [["X", "X"], ["b1", "b3"]]
+    trait = "INFECTED_PROGRESS"
+    idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
+    vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1-(1-value)/2
+
+    return {"Infected_Progress": value}
+
+
+def update_transmission_to_human(simulation, value):
+    vsp = simulation.task.config.parameters.Vector_Species_Params[0]
+
+    genome = [["X", "X"], ["b1", "b1"]]
+    trait = "TRANSMISSION_TO_HUMAN"
+    idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
+    vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = value
+
+    genome = [["X", "X"], ["b1", "b0"]]
+    trait = "TRANSMISSION_TO_HUMAN"
+    idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
+    vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1 - (1 - value) / 2
+
+    genome = [["X", "X"], ["b1", "b2"]]
+    trait = "TRANSMISSION_TO_HUMAN"
+    idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
+    vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1 - (1 - value) / 2
+
+    genome = [["X", "X"], ["b1", "b3"]]
+    trait = "TRANSMISSION_TO_HUMAN"
+    idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
+    vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1 - (1 - value) / 2
+
+    return {"Transmission_To_Human": value}
 
 
 def update_serialize(simulation, larval_multiplier, serialization=0, sim_duration=40 * 365,

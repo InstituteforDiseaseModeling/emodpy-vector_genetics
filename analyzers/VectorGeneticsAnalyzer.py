@@ -21,7 +21,8 @@ mpl.use('Agg')
 
 class VectorGeneticsAnalyzer(BaseAnalyzer):
 
-    def __init__(self, title='idm', tags=['Baseline', 'Run_Number', 'Larval_Capacity']):
+    def __init__(self, title='idm', tags=['Baseline', 'Run_Number', 'Larval_Capacity', 'Transmission_To_Human',
+                                          'Infected_Progress']):
         super().__init__(filenames=["output\\ReportVectorGenetics_gambiae_Female_ALLELE_FREQ.csv"])
         self.tags = tags
         print(title)
