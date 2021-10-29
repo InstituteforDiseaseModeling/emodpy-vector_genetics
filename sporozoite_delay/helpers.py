@@ -59,20 +59,20 @@ def update_infected_progress(simulation, value):
     idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
     vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = value
 
-    genome = [["X", "X"], ["b1", "b0"]]
-    trait = "INFECTED_PROGRESS"
-    idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
-    vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1-(1-value)/2
+    # genome = [["X", "X"], ["b1", "b0"]]
+    # trait = "INFECTED_PROGRESS"
+    # idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
+    # vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1-(1-value)/2
 
-    genome = [["X", "X"], ["b1", "b2"]]
-    trait = "INFECTED_PROGRESS"
-    idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
-    vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1-(1-value)/2
-
-    genome = [["X", "X"], ["b1", "b3"]]
-    trait = "INFECTED_PROGRESS"
-    idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
-    vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1-(1-value)/2
+    # genome = [["X", "X"], ["b1", "b2"]]
+    # trait = "INFECTED_PROGRESS"
+    # idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
+    # vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1-(1-value)/2
+    #
+    # genome = [["X", "X"], ["b1", "b3"]]
+    # trait = "INFECTED_PROGRESS"
+    # idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
+    # vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1-(1-value)/2
 
     return {"Infected_Progress": value}
 
@@ -85,20 +85,20 @@ def update_transmission_to_human(simulation, value):
     idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
     vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = value
 
-    genome = [["X", "X"], ["b1", "b0"]]
-    trait = "TRANSMISSION_TO_HUMAN"
-    idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
-    vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1 - (1 - value) / 2
-
-    genome = [["X", "X"], ["b1", "b2"]]
-    trait = "TRANSMISSION_TO_HUMAN"
-    idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
-    vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1 - (1 - value) / 2
-
-    genome = [["X", "X"], ["b1", "b3"]]
-    trait = "TRANSMISSION_TO_HUMAN"
-    idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
-    vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1 - (1 - value) / 2
+    # genome = [["X", "X"], ["b1", "b0"]]
+    # trait = "TRANSMISSION_TO_HUMAN"
+    # idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
+    # vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1 - (1 - value) / 2
+    #
+    # genome = [["X", "X"], ["b1", "b2"]]
+    # trait = "TRANSMISSION_TO_HUMAN"
+    # idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
+    # vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1 - (1 - value) / 2
+    #
+    # genome = [["X", "X"], ["b1", "b3"]]
+    # trait = "TRANSMISSION_TO_HUMAN"
+    # idx1, idx2 = find_genome_index_in_trait_modifiers(vsp=vsp, genome=genome, trait_of_interest=trait)
+    # vsp.Gene_To_Trait_Modifiers[idx1].Trait_Modifiers[idx2].Modifier = 1 - (1 - value) / 2
 
     return {"Transmission_To_Human": value}
 

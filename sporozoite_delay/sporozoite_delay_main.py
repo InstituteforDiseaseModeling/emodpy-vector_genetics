@@ -76,7 +76,7 @@ def general_sim(serialization=0, serialized_exp_id=None):
         func = partial(update_serialize, serialization=serialization, sim_duration=10 * 365,
                        serialized_population_path_df=serialized_population_path_df)
         # builder.add_sweep_definition(func, [7.0, 7.25, 7.5, 7.75, 8.0])
-        builder.add_sweep_definition(func, [7.75, 8.0])
+        builder.add_sweep_definition(func, [7.5, 7.75, 8.0])
 
         # Sweep run number
         builder.add_sweep_definition(update_sim_random_seed, range(params.nSims))
@@ -88,7 +88,7 @@ def general_sim(serialization=0, serialized_exp_id=None):
         exp_name = params.exp_name
 
         # Sweep transmission to human
-        builder.add_sweep_definition(update_transmission_to_human, [0.4, 0.5, 0.6, 0.7, 0.8])
+        builder.add_sweep_definition(update_transmission_to_human, [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6])
 
         # Sweep infected progress
         builder.add_sweep_definition(update_infected_progress, [0.3, 0.4, 0.5, 0.6, 0.7])

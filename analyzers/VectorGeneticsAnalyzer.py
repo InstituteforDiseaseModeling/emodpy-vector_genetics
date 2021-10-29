@@ -66,18 +66,20 @@ class VectorGeneticsAnalyzer(BaseAnalyzer):
             dftemp = v.copy()
             for t in self.tags:
                 dftemp[t] = [s.tags[t]]*len(v)
+            dftemp.set_index(self.tags)
             df_final = pd.concat([df_final, dftemp])
-        df_final.to_csv(os.path.join(output_dir, "sporozoite_reduction_allele_frequency_full.csv"))
+        df_final.to_pickle('sporozoite_reduction_allele_frequency_full.csv')
+        # df_final.to_csv(os.path.join(output_dir, "sporozoite_reduction_allele_frequency_full.csv"))
 
-        groupby_tags = self.tags
-        groupby_tags.remove('Run_Number')
-
-        df_allele_final = df_final.groupby(groupby_tags+['Time', 'Alleles'])['VectorPopulation'].apply(
-            np.mean).reset_index()
-        df_allele_final_std = df_final.groupby(groupby_tags + ['Time', 'Alleles'])['VectorPopulation'].apply(np.std)
-        df_allele_final['VectorPopulation_std'] = list(df_allele_final_std)
-
-        df_allele_final.to_csv(os.path.join(output_dir, "sporozoite_reduction_allele_frequency_final.csv"))
+        # groupby_tags = self.tags
+        # groupby_tags.remove('Run_Number')
+        #
+        # df_allele_final = df_final.groupby(groupby_tags+['Time', 'Alleles'])['VectorPopulation'].apply(
+        #     np.mean).reset_index()
+        # df_allele_final_std = df_final.groupby(groupby_tags + ['Time', 'Alleles'])['VectorPopulation'].apply(np.std)
+        # df_allele_final['VectorPopulation_std'] = list(df_allele_final_std)
+        #
+        # df_allele_final.to_csv(os.path.join(output_dir, "sporozoite_reduction_allele_frequency_final.csv"))
 
 
 if __name__ == '__main__':
