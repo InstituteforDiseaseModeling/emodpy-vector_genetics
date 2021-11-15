@@ -30,6 +30,6 @@ if __name__ == "__main__":
 
     wim = WorkItemManager(item_name=wi_name, command=command, user_files=user_files,
                           docker_image="docker-production.packages.idmod.org/dtk-tools/dtk-tools-feather-tqdm-hdf5:1.0.1",  # use w/ analyzers_large_data
-                          related_experiments=["8bbe4c48-6326-ec11-9ecd-9440c9bee941"])
+                          related_experiments=["4dac6575-df43-ec11-9ecd-9440c9bee941"])
     wim.comps_env = 'Calculon'
     wim.execute(True)

@@ -269,13 +269,13 @@ def set_param_fn(config):
     vecconf.add_alleles(['b0', 'b1', 'b2', 'b3'], [1.0, 0.0, 0.0, 0.0])
 
     vecconf.add_trait(manifest, [["X", "X"], ["b1", "b1"]], "INFECTED_PROGRESS", 0.5)
-    vecconf.add_trait(manifest, [["X", "X"], ["b1", "b0"]], "INFECTED_PROGRESS", 0.75)
-    vecconf.add_trait(manifest, [["X", "X"], ["b1", "b2"]], "INFECTED_PROGRESS", 0.75)
-    vecconf.add_trait(manifest, [["X", "X"], ["b1", "b3"]], "INFECTED_PROGRESS", 0.75)
+    # vecconf.add_trait(manifest, [["X", "X"], ["b1", "b0"]], "INFECTED_PROGRESS", 0.75)
+    # vecconf.add_trait(manifest, [["X", "X"], ["b1", "b2"]], "INFECTED_PROGRESS", 0.75)
+    # vecconf.add_trait(manifest, [["X", "X"], ["b1", "b3"]], "INFECTED_PROGRESS", 0.75)
     vecconf.add_trait(manifest, [["X", "X"], ["b1", "b1"]], "TRANSMISSION_TO_HUMAN", 0.6)
-    vecconf.add_trait(manifest, [["X", "X"], ["b1", "b0"]], "TRANSMISSION_TO_HUMAN", 0.8)
-    vecconf.add_trait(manifest, [["X", "X"], ["b1", "b2"]], "TRANSMISSION_TO_HUMAN", 0.8)
-    vecconf.add_trait(manifest, [["X", "X"], ["b1", "b3"]], "TRANSMISSION_TO_HUMAN", 0.8)
+    # vecconf.add_trait(manifest, [["X", "X"], ["b1", "b0"]], "TRANSMISSION_TO_HUMAN", 0.8)
+    # vecconf.add_trait(manifest, [["X", "X"], ["b1", "b2"]], "TRANSMISSION_TO_HUMAN", 0.8)
+    # vecconf.add_trait(manifest, [["X", "X"], ["b1", "b3"]], "TRANSMISSION_TO_HUMAN", 0.8)
 
     # Fitness cost  parameters
     sd1 = 0
@@ -293,6 +293,7 @@ def set_param_fn(config):
     frn = 0
     hfre2 = 0.5
     fre2 = 0
+    fre3 = 0.15    # Including fitness costs for homozygotes with effector only
 
     # Driver fitness
     vecconf.add_trait(manifest, [["a0", "a1"]], "MORTALITY", 1 / ((1 - hd1 * sd1) * (1 - hn * sn)))
@@ -308,17 +309,17 @@ def set_param_fn(config):
     vecconf.add_trait(manifest, [["a3", "a3"]], "MORTALITY", max_mf)
 
     # Effector fitness
-    vecconf.add_trait(manifest, [["b0", "b1"]], "MORTALITY", 1 / ((1 - hd2 * sd2) * (1 - he2 * se2)))
-    vecconf.add_trait(manifest, [["b0", "b1"]], "FECUNDITY", 1 - hfre2 * fre2)
-    vecconf.add_trait(manifest, [["b0", "b3"]], "MORTALITY", 1 / (1 - hm * sm))
+    # vecconf.add_trait(manifest, [["b0", "b1"]], "MORTALITY", 1 / ((1 - hd2 * sd2) * (1 - he2 * se2)))
+    # vecconf.add_trait(manifest, [["b0", "b1"]], "FECUNDITY", 1 - hfre2 * fre2)
+    # vecconf.add_trait(manifest, [["b0", "b3"]], "MORTALITY", 1 / (1 - hm * sm))
     vecconf.add_trait(manifest, [["b1", "b1"]], "MORTALITY", 1 / ((1 - sd2) * (1 - se2)))
-    vecconf.add_trait(manifest, [["b1", "b1"]], "FECUNDITY", 1 - fre2)
-    vecconf.add_trait(manifest, [["b1", "b2"]], "MORTALITY", 1 / ((1 - hd2 * sd2) * (1 - he2 * se2)))
-    vecconf.add_trait(manifest, [["b1", "b2"]], "FECUNDITY", 1 - hfre2 * fre2)
-    vecconf.add_trait(manifest, [["b1", "b3"]], "MORTALITY", 1 / ((1 - hd2 * sd2) * (1 - he2 * se2) * (1 - hm * sm)))
-    vecconf.add_trait(manifest, [["b1", "b3"]], "FECUNDITY", 1 - hfre2 * fre2)
-    vecconf.add_trait(manifest, [["b2", "b3"]], "MORTALITY", 1 / (1 - hm * sm))
-    vecconf.add_trait(manifest, [["b3", "b3"]], "MORTALITY", max_mf)
+    # vecconf.add_trait(manifest, [["b1", "b1"]], "FECUNDITY", 1 - fre3)
+    # vecconf.add_trait(manifest, [["b1", "b2"]], "MORTALITY", 1 / ((1 - hd2 * sd2) * (1 - he2 * se2)))
+    # vecconf.add_trait(manifest, [["b1", "b2"]], "FECUNDITY", 1 - hfre2 * fre2)
+    # vecconf.add_trait(manifest, [["b1", "b3"]], "MORTALITY", 1 / ((1 - hd2 * sd2) * (1 - he2 * se2) * (1 - hm * sm)))
+    # vecconf.add_trait(manifest, [["b1", "b3"]], "FECUNDITY", 1 - hfre2 * fre2)
+    # vecconf.add_trait(manifest, [["b2", "b3"]], "MORTALITY", 1 / (1 - hm * sm))
+    # vecconf.add_trait(manifest, [["b3", "b3"]], "MORTALITY", max_mf)
 
     vecconf.set_species_drivers(config, drivers)
     vecconf.set_genetics(vecconf.get_species_params(config, "gambiae"), manifest)
